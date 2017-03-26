@@ -53,7 +53,7 @@ def star_sys(star_mass,planets,minmass,maxmass,mindist,maxdist,circular=True):
             x_vect = ratio*math.cos(theta+math.pi/2)
             y_vect = ratio*math.sin(theta+math.pi/2)
             vect = (x_vect,y_vect)
-            print vect
+            print(vect)
         else:
             vect = (choice([-1,1])*uniform(0.5,1.5),choice([-1,1])*uniform(0.5,1.5))
         color = (randint(0,255),randint(0,255),randint(0,255))

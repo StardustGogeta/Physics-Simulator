@@ -103,7 +103,7 @@ def physics(bodies):
                 if body_1 != body:
                     #check collisions
                     if body.get_rect().collidepoint(body_1.pos) and body.collision and body_1.collision:
-                        print len(bodies)
+                        print(len(bodies))
                         rel = float(body.mass)/(body.mass+body_1.mass)
                         pos = ((body.pos[0]*rel+body_1.pos[0]*(1-rel)),(body.pos[1]*rel+body_1.pos[1]*(1-rel)))
                         #vect = ((body.vect[0]*rel+body_1.vect[0]*(1-rel)),(body.vect[1]*rel+body_1.vect[1]*(1-rel)))

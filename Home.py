@@ -1,5 +1,5 @@
 #Tkinter home screen environment generator
-from Tkinter import *
+from tkinter import *
 from Physics import *
 from Body import *
 
@@ -122,7 +122,7 @@ def make_star_system():
     circular = IntVar()
     circular_check = Checkbutton(star,variable=circular)
     circular_check.select()
-    print circular.get()
+    print(circular.get())
 
     #make buttons
     submit_button = Button(star,text="make system",command=submit_system)
@@ -161,7 +161,7 @@ def submit_system():
     mindist = int(mindist_field.get())
     maxdist = int(maxdist_field.get())
     circularbool = circular.get()
-    print circular.get()
+    print(circular.get())
 
     star.destroy()
     bodies.extend(star_sys(mass,planets,minmass,maxmass,mindist,maxdist,True))
