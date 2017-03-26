@@ -3,10 +3,9 @@ from tkinter import *
 from Physics import *
 from Body import *
 
-#init bodies list
+# Init bodies list
 global bodies
 bodies = []
-
 
 
 ###################### body-maker wizard ####################
@@ -16,12 +15,12 @@ def make_body():
     body = Tk()
 
     #make labels
-    mass_label = Label(body,text="mass")
-    pos_label = Label(body,text="position (x,y)")
-    vect_label = Label(body,text="velocity (x,y)")
-    radius_label = Label(body,text="radius")
-    collision_label = Label(body,text="can collide")
-    color_label = Label(body,text="color (r,g,b)")
+    mass_label = Label(body,text="Mass")
+    pos_label = Label(body,text="Position (x,y)")
+    vect_label = Label(body,text="Velocity (x,y)")
+    radius_label = Label(body,text="Radius")
+    collision_label = Label(body,text="Can Collide?")
+    color_label = Label(body,text="Color (R,G,B)")
 
     #make entry fields and assosciated StringVar's
     global mass_field,px_field,py_field,vx_field,vy_field,radius_field,massint_field,r_field,g_field,b_field
@@ -42,11 +41,11 @@ def make_body():
     collision_check = Checkbutton(body,variable=collision)
     collision_check.select()
     autorad = IntVar()
-    autorad_check = Checkbutton(body,text="mass-based",variable=autorad)
+    autorad_check = Checkbutton(body,text="Mass-based",variable=autorad)
     autorad_check.select()
 
     #make buttons
-    submit_button = Button(body,text="add body",command=submit)
+    submit_button = Button(body,text="Add Body",command=submit)
 
     #grid all elements to body
     mass_label.grid(row=0,column=0,sticky=E)
@@ -102,11 +101,11 @@ def make_star_system():
     star = Tk()
 
     #make labels
-    mass_label = Label(star,text="star mass")
-    planets_label = Label(star,text="number of planets")
-    planetmass_label = Label(star,text="planet mass (min,max)")
-    dist_label = Label(star,text="planet distance (min,max)")
-    circular_label = Label(star,text="circular orbits")
+    mass_label = Label(star,text="Star Mass")
+    planets_label = Label(star,text="Number of Planets")
+    planetmass_label = Label(star,text="Planet Mass (min,max)")
+    dist_label = Label(star,text="Planet Distance (min,max)")
+    circular_label = Label(star,text="Circular Orbits")
 
     #make entry fields
     global mass_field,planets_field,minmass_field,maxmass_field,mindist_field,maxdist_field
@@ -125,7 +124,7 @@ def make_star_system():
     print(circular.get())
 
     #make buttons
-    submit_button = Button(star,text="make system",command=submit_system)
+    submit_button = Button(star,text="Make System",command=submit_system)
 
     #grid all elements to star
     mass_label.grid(row=0,column=0,sticky=E)
@@ -167,11 +166,7 @@ def submit_system():
     bodies.extend(star_sys(mass,planets,minmass,maxmass,mindist,maxdist,True))
 
 
-
-
 #################################################################
-
-
 
 
 def run_simulation(bodies):
@@ -179,24 +174,21 @@ def run_simulation(bodies):
     physics(bodies)
 
 
-
 #init root
 global root
 root = Tk()
-
+root.wm_title("Physics Simulator")
 
 
 #create buttons
-add_body = Button(root,text="add body",command=make_body)
-star_system = Button(root,text="star system",command=make_star_system)
-run = Button(root,text="run simulation",command=lambda: run_simulation(bodies))
+add_body = Button(root,text="Add Body",command=make_body)
+star_system = Button(root,text="Star System",command=make_star_system)
+run = Button(root,text="Run Simulation",command=lambda: run_simulation(bodies))
 
 #grid buttons to root
 add_body.grid(row=0,column=0,sticky=W)
 star_system.grid(row=1,column=0,sticky=W)
 run.grid(row=2,column=0,columnspan=2,sticky=W)
-
-
 
 
 root.mainloop()

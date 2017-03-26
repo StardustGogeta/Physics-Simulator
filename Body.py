@@ -1,17 +1,17 @@
 #All classes and functions assosciated with bodies
-from pygame import *
-from Constants import *
-from random import *
-import math
+from random import randint, uniform, choice
+from pygame import Rect
+from Physics import G
+from math import sin, cos, pi
 
 class Body():
-    def __init__(self,mass,pos,vect,color,rad=-1,collision=True):
+    def __init__(self,mass,pos,vect,color,rad=-1,collision=True,density=5):
         self.mass = mass
         self.pos = pos
         self.vect = vect
         self.color = color
         if rad == -1:
-            #body size scaling (2 => 2D (area); 3 => 3D (volume))
+            #body size scaling (2 => 2D (area); 3 => 3D (volume))    
             D = 3
             self.rad = float(mass)**(1.0/D)*density
         else:
@@ -39,19 +39,18 @@ def rand_bodies(num,minmass,maxmass,minvel,maxvel,collide=True):
         bodies.append(Body(mass,(x,y),(x_vect,y_vect),color,-1,collide))
     return bodies
 
-
-
 def star_sys(star_mass,planets,minmass,maxmass,mindist,maxdist,circular=True):
     bodies = [Body(star_mass,(1000/2,600/2),(0,0),(255,255,0),-1,True)]
+    GM = G*star_mass
     for i in range(planets):
         mass = randint(minmass,maxmass)
-        dist = randint(mindist,maxdist)
-        theta = uniform(0,2*math.pi)
-        pos = (1000/2+dist*math.cos(theta),600/2+dist*math.sin(theta))
+        r = randint(mindist,maxdist)
+        theta = uniform(0,2*pi)
+        pos = (1000/2+r*cos(theta),600/2+r*sin(theta))
         if circular:
-            ratio = (star_mass/dist)**(1.0/2.0)
-            x_vect = ratio*math.cos(theta+math.pi/2)
-            y_vect = ratio*math.sin(theta+math.pi/2)
+            ratio = (GM/r)**0.5
+            y_vect = ratio*cos(theta)
+            x_vect = ratio*sin(theta)
             vect = (x_vect,y_vect)
             print(vect)
         else:
