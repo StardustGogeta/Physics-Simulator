@@ -94,7 +94,7 @@ def physics(bodies):
                     # Check collisions
                     if body.get_rect().collidepoint(body_1.pos) and body.collision and body_1.collision:
                         print(str(len(bodies)-1)+" bodies remaining")
-                        rel = float(body.mass)/(body.mass+body_1.mass)
+                        rel = body.mass/(body.mass+body_1.mass)
                         pos = ((body.pos[0]*rel+body_1.pos[0]*(1-rel)),(body.pos[1]*rel+body_1.pos[1]*(1-rel)))
                         x_vect = (body.get_mom()[0]+body_1.get_mom()[0])/(body.mass+body_1.mass)
                         y_vect = (body.get_mom()[1]+body_1.get_mom()[1])/(body.mass+body_1.mass)

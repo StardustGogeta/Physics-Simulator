@@ -13,7 +13,7 @@ class Body():
         if rad == -1:
             #body size scaling (2 => 2D (area); 3 => 3D (volume))    
             D = 3
-            self.rad = float(mass)**(1.0/D)*density
+            self.rad = mass**(1.0/D)*density
         else:
             self.rad = rad
         self.collision = collision
@@ -22,7 +22,7 @@ class Body():
         return Rect(self.pos[0]-self.rad,self.pos[1]-self.rad,self.rad*2,self.rad*2)
 
     def get_mom(self):
-        return (float(self.mass*self.vect[0]),float(self.mass*self.vect[1]))
+        return (self.mass*self.vect[0],self.mass*self.vect[1])
 
 
 
@@ -52,7 +52,6 @@ def star_sys(star_mass,planets,minmass,maxmass,mindist,maxdist,circular=True):
             y_vect = ratio*cos(theta)
             x_vect = ratio*sin(theta)
             vect = (x_vect,y_vect)
-            print(vect)
         else:
             vect = (choice([-1,1])*uniform(0.5,1.5),choice([-1,1])*uniform(0.5,1.5))
         color = (randint(0,255),randint(0,255),randint(0,255))
